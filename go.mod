@@ -1,7 +1,11 @@
-module vulcan
+module FyUTILS
 
 go 1.21.0
 
-toolchain go1.21.3
+require (
+	github.com/NoahOnFyre/gengine v0.9.0
+	github.com/google/go-github v17.0.0+incompatible
+	golang.org/x/mod v0.13.0
+)
 
-require github.com/NoahOnFyre/gengine v0.9.0 // indirect
+require github.com/google/go-querystring v1.1.0 // indirect
