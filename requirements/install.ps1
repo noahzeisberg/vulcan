@@ -14,3 +14,9 @@ Invoke-WebRequest -Uri $fileDownloadUrl -OutFile $filePath
 $env:Path += ";$folderPath"
 
 Write-Output ""
+Write-Output "Installation of Vulcan complete!"
+Write-Output "You can close this window now and continue with the instructions."
+Write-Output "https://github.com/noahonfyre/vulcan#installation"
+Write-Output ""
+Write-Output "You may need to restart your PC."
+Write-Output ""
