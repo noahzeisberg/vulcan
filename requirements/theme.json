@@ -1,0 +1,23 @@
+{
+  "background": "#101018",
+  "black": "#101018",
+  "blue": "#2B4FFF",
+  "brightBlack": "#32324B",
+  "brightBlue": "#5C78FF",
+  "brightCyan": "#5AC8FF",
+  "brightGreen": "#905AFF",
+  "brightPurple": "#5EA2FF",
+  "brightRed": "#BA5AFF",
+  "brightWhite": "#E6E6FF",
+  "brightYellow": "#685AFF",
+  "cursorColor": "#FFFFFF",
+  "cyan": "#28B9FF",
+  "foreground": "#FFFFFF",
+  "green": "#7129FF",
+  "name": "Vulcan Experience",
+  "purple": "#2883FF",
+  "red": "#A52AFF",
+  "selectionBackground": "#FFFFFF",
+  "white": "#C8C8FF",
+  "yellow": "#3D2AFF"
+}
