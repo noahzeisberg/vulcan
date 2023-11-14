@@ -8,7 +8,7 @@ var (
 
 func SetState(msg string) {
 	state = msg
-	utils.SetTitle("FyUTILS " + version + " - " + username + "@" + device + " - " + state)
+	utils.SetTitle("Vulcan " + version + " - " + username + "@" + device + " - " + state)
 }
 
 func GetState() string {
