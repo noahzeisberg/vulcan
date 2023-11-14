@@ -18,32 +18,33 @@ import (
 var (
 	username, _ = strings.CutPrefix(convert.ValueOf(utils.Catch(os.UserHomeDir())), "C:\\Users\\")
 	device, _   = os.Hostname()
-	version     = "v1.15.0"
+	version     = "v1.0.0"
 	homeDir, _  = os.UserHomeDir()
-	mainDir     = homeDir + "\\.fy\\"
-	configPath  = mainDir + "config.json"
+	vulcanDir   = homeDir + "\\.vulcan\\"
+	moduleDir   = vulcanDir + "module\\"
+	tempDir     = vulcanDir + "temp\\"
+	configPath  = vulcanDir + "config.json"
 
 	commands []Command
 )
 
 func Menu() {
 	logging.Print()
-	logging.Print(color.Blue + "    ______      __  ______________   _____")
-	logging.Print(color.Blue + "   / ____/_  __/ / / /_  __/  _/ /  / ___/")
-	logging.Print(color.Blue + "  / /_  / / / / / / / / /  / // /   \\__ \\" + "     " + color.Gray + "Version" + ": " + color.Blue + version + color.Reset)
-	logging.Print(color.Blue + " / __/ / /_/ / /_/ / / / _/ // /______/ /" + "     " + color.Gray + "User" + ": " + color.Blue + username + color.Reset)
-	logging.Print(color.Blue + "/_/    \\__, /\\____/ /_/ /___/_____/____/" + "      " + color.Gray + "Device" + ": " + color.Blue + device + color.Reset)
-	logging.Print(color.Blue + "       __/ /")
-	logging.Print(color.Blue + "     /____/")
+	logging.Print(color.Green + "____   ____ __   __  __     _____    ___     ___  __ ")
+	logging.Print(color.Green + "\\   \\ /   /|  | |  ||  |   /  __/   /   \\   |   \\|  |")
+	logging.Print(color.Green + " \\   V   / |  | |  ||  |   | /     /  ∆  \\  |  \\ |  |")
+	logging.Print(color.Green + "  \\     /  |  |_|  ||  |__ | \\__  /  ___  \\ |  |\\   |")
+	logging.Print(color.Green + "   \\___/    \\_____/ |_____|\\____\\/__/   \\__\\|__| \\__|")
+	logging.Print()
 }
 
 func main() {
-	logging.SetMainColor(color.BlueBg)
+	logging.SetMainColor(color.GreenBg)
 
 	var newestRelease *github.RepositoryRelease
 
 	go func() {
-		release, _, err := githubClient.Repositories.GetLatestRelease(context.Background(), "NoahOnFyre", "FyUTILS")
+		release, _, err := githubClient.Repositories.GetLatestRelease(context.Background(), "NoahOnFyre", "vulcan")
 		if err != nil {
 			return
 		}
@@ -55,7 +56,9 @@ func main() {
 
 	CheckPaths([]string{
 		homeDir,
-		mainDir,
+		vulcanDir,
+		moduleDir,
+		tempDir,
 	})
 
 	CommandRegistration()
@@ -64,8 +67,8 @@ func main() {
 	for {
 		SetState("Idle")
 		logging.Print()
-		currentDir, _ := os.Getwd()
-		input := logging.Input(color.Gray + "┌───[" + color.Blue + username + color.Gray + "@" + color.Reset + device + color.Gray + "]───(" + color.Reset + currentDir + color.Gray + ")\n" + color.Gray + "└─> " + color.Reset)
+		// currentDir, _ := os.Getwd()
+		input := logging.Input(color.GreenBg + color.Black + " \ue62a " + username + "@" + device + " " + color.Reset + color.Green + "\ue0b8" + " Noah " + color.Reset)
 		if input == "" {
 			continue
 		}
@@ -75,7 +78,7 @@ func main() {
 		if newestRelease != nil {
 			logging.Print()
 			logging.Print(color.Gray + "┌" + MultiString("─", 119))
-			logging.Print(color.Gray + "│ " + color.Reset + "A new version of FyUTILS is available!")
+			logging.Print(color.Gray + "│ " + color.Reset + "A new version of Vulcan is available!")
 			logging.Print(color.Gray + "│ " + color.Reset + "Version Diff: " + color.Red + version + color.Gray + " -> " + color.Green + newestRelease.GetTagName())
 			logging.Print(color.Gray + "└" + MultiString("─", 119))
 		}
