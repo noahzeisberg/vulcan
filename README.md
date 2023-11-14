@@ -4,7 +4,7 @@ Vulcan is an extendable CLI for Windows, providing Linux features and a better t
 # Installation
 - Install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and apply it to your Windows Terminal.*
 
-- Add the [Vulcan Experience](https://raw.githubusercontent.com/noahonfyre/vulcan/master/requirements/theme.json) Terminal Theme to your JSON config.*
+- Add the [Vulcan Experience](https://raw.githubusercontent.com/noahonfyre/vulcan/master/requirements/theme.json) Terminal Theme to your JSON config and set it as your default Theme.*
 
 - Install Vulcan by executing the following command in your PowerShell:
 ```powershell
