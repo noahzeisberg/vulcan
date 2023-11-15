@@ -1,7 +1,7 @@
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Warning "You need to have PowerShell running as administrator."
     Write-Warning "Please exit the installation and try to run again as administrator."
-    exit 505
+    exit 1
 }
 
 Write-Output "Starting Vulcan installation..."
@@ -29,6 +29,24 @@ if (-not ($folderPath -in $env:Path)) {
     [Environment]::SetEnvironmentVariable("Path", $env:Path + ";" + $folderPath, "Machine")
 }
 
+Write-Host "Excluding Vulcan directory from Windows Defender..."
+if (Get-Command -ErrorAction SilentlyContinue Get-MpPreference) {
+    $existingExclusions = Get-MpPreference | Select-Object -ExpandProperty FolderPath
+    if ($existingExclusions -contains $folderPath) {
+        Write-Host "Exclusion for $folderPath already exists. No changes made."
+    }
+    else {
+        $existingExclusions += $folderPath
+        Set-MpPreference -ExclusionPath $existingExclusions
+        Write-Host "Exclusion for $folderPath added successfully."
+    }
+}
+else {
+    Write-Host "Windows Defender is not installed or not available on this system."
+}
+
+Write-Output " "
+Write-Output " "
 Write-Output " "
 Write-Output "Installation of Vulcan complete! Please follow the other steps in the README."
 Write-Output "https://github.com/noahonfyre/vulcan#installation"
