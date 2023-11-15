@@ -23,30 +23,28 @@ $fileDownloadUrl = $releaseInfo.assets | Where-Object { $_.name -eq $fileName } 
 Write-Output "Downloading file from GitHub..."
 Invoke-WebRequest -Uri $fileDownloadUrl -OutFile $filePath
 
-Write-Output "Checking for PATH variable..."
-if (-not ($folderPath -in $env:Path)) {
-    Write-Output "Adding directory to your PATH variable..."
-    [Environment]::SetEnvironmentVariable("Path", $env:Path + ";" + $folderPath, "Machine")
+Write-Output "Checking for environment variable..."
+if (-not ($folderPath -in $env:VULCAN)) {
+    Write-Output "Adding directory to your environment variables..."
+    [Environment]::SetEnvironmentVariable("VULCAN", $filePath, "Machine")
 }
 
-Write-Host "Excluding Vulcan directory from Windows Defender..."
+Write-Output "Excluding Vulcan directory from Windows Defender..."
 if (Get-Command -ErrorAction SilentlyContinue Get-MpPreference) {
-    $existingExclusions = Get-MpPreference | Select-Object -ExpandProperty $folderPath
+    $existingExclusions = Get-MpPreference | Select-Object -ExpandProperty ExclusionPath
     if ($existingExclusions -contains $folderPath) {
-        Write-Host "Exclusion for $folderPath already exists. No changes made."
+        Write-Output "Exclusion for $folderPath already exists. No changes made."
     }
     else {
         $existingExclusions += $folderPath
         Set-MpPreference -ExclusionPath $existingExclusions
-        Write-Host "Exclusion for $folderPath added successfully."
+        Write-Output "Exclusion for $folderPath added successfully."
     }
 }
 else {
-    Write-Host "Windows Defender is not installed or not available on this system."
+    Write-Warning "Windows Defender is not installed or not available on this system."
 }
 
-Write-Output " "
-Write-Output " "
 Write-Output " "
 Write-Output "Installation of Vulcan complete! Please follow the other steps in the README."
 Write-Output "https://github.com/noahonfyre/vulcan#installation"

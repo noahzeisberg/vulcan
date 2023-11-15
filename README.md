@@ -11,7 +11,7 @@ Vulcan is an extendable CLI for Windows, providing Linux features and a better t
 irm https://raw.githubusercontent.com/noahonfyre/vulcan/master/requirements/install.ps1 | iex
 ```
 
-- Create a terminal profile named "Vulcan" and let it point to `v.exe`
+- Create a terminal profile named "Vulcan" and let it point to `%VULCAN%`
 
 Note (*): You don't necessarily need those dependencies,
 but they improve the appearance of Vulcan a lot,
