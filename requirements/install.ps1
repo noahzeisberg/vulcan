@@ -4,6 +4,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     exit 1
 }
 
+Write-Output " "
 Write-Output "Starting Vulcan installation..."
 Write-Output "Setting up variables..."
 $fileName = "v.exe"
