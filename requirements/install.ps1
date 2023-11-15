@@ -31,7 +31,7 @@ if (-not ($folderPath -in $env:Path)) {
 
 Write-Host "Excluding Vulcan directory from Windows Defender..."
 if (Get-Command -ErrorAction SilentlyContinue Get-MpPreference) {
-    $existingExclusions = Get-MpPreference | Select-Object -ExpandProperty FolderPath
+    $existingExclusions = Get-MpPreference | Select-Object -ExpandProperty $folderPath
     if ($existingExclusions -contains $folderPath) {
         Write-Host "Exclusion for $folderPath already exists. No changes made."
     }
