@@ -1,7 +1,8 @@
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Warning "You need to have PowerShell running as administrator."
     Write-Warning "Please exit the installation and try to run again as administrator."
-    exit 1
+    $null = $host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    exit
 }
 
 Write-Output " "
